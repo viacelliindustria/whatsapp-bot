@@ -4,6 +4,9 @@
   "description": "Bot para WhatsApp da empresa Viacelli",
   "repository": "https://github.com/viacelliindustria/whatsapp-bot.git",
   "license": "MIT",
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "puppeteer": "^24.6.1",
