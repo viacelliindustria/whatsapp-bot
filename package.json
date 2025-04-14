@@ -1,8 +1,14 @@
 {
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "Bot para WhatsApp da empresa Viacelli",
+  "repository": "https://github.com/viacelliindustria/whatsapp-bot.git",
+  "license": "MIT",
   "dependencies": {
-    "moment-timezone": "^0.5.45",
+    "express": "^4.17.1",
+    "puppeteer": "^24.6.1",
     "qrcode-terminal": "^0.12.0",
-    "whatsapp-web.js": "^1.0.0"
+    "whatsapp-web.js": "^1.27.0"
   },
   "scripts": {
     "start": "node index.js"

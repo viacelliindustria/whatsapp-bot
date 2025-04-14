@@ -1,7 +1,15 @@
-// leitor de qr code
 const qrcode = require('qrcode-terminal');
-const { Client } = require('whatsapp-web.js');
-const client = new Client();
+const { Client, LocalAuth } = require('whatsapp-web.js');
+const client = new Client({
+    authStrategy: new LocalAuth({
+        clientId: "whatsapp-session-id",
+        storagePath: './wwebjs_auth'
+    })
+});
+
+client.on('authenticated', (session) => {
+    console.log('Sessão autenticada e salva com sucesso!');
+});
 
 client.on('qr', qr => {
     qrcode.generate(qr, { small: true });
@@ -15,10 +23,9 @@ client.initialize();
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-// Função para verificar se está dentro do horário comercial
 function dentroDoHorarioComercial() {
     const agora = new Date();
-    const dia = agora.getDay(); // 0 = domingo, 1 = segunda...
+    const dia = agora.getDay();
     const hora = agora.getHours();
     const minuto = agora.getMinutes();
 
@@ -44,7 +51,7 @@ function dentroDoHorarioComercial() {
         );
     }
 
-    return false; // sábado e domingo
+    return false;
 }
 
 client.on('message', async msg => {
@@ -81,7 +88,6 @@ client.on('message', async msg => {
         );
     }
 
-    // Opção 1
     if (msg.body === '1') {
         await client.sendMessage(
             msg.from,
@@ -89,7 +95,6 @@ client.on('message', async msg => {
         );
     }
 
-    // Opção 2
     if (msg.body === '2') {
         await client.sendMessage(
             msg.from,
@@ -97,7 +102,6 @@ client.on('message', async msg => {
         );
     }
 
-    // Opção 3
     if (msg.body === '3') {
         await client.sendMessage(
             msg.from,
@@ -105,7 +109,6 @@ client.on('message', async msg => {
         );
     }
 
-    // Opção 4 (Instagram)
     if (msg.body === '4') {
         await client.sendMessage(
             msg.from,
