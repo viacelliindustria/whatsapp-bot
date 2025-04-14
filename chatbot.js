@@ -1,5 +1,17 @@
+const express = require('express');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+    res.send('Bot WhatsApp da Viacelli rodando!');
+});
+
+app.listen(port, () => {
+    console.log(`Servidor HTTP rodando na porta ${port}`);
+});
 
 const client = new Client({
     authStrategy: new LocalAuth({
